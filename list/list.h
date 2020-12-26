@@ -53,9 +53,19 @@ void list__append(list* my_list, int v) {
     my_list->vals = new_vals;
     my_list->cur_size = cur_size + 1;
     my_list->max_size = 2 * max_size;
-
   }
 
+  return;
+}
+
+
+
+
+// Appends a value v to a list
+void list__remove_last(list* my_list) {
+  // Currently don't deallocate any memory for this operation
+  // Doing that might be good, depending on how it's used
+  my_list->cur_size -= 1;
   return;
 }
 
@@ -86,7 +96,7 @@ void list__free(list* my_list) {
 // Returns value at a given index
 int list__index(list* my_list, int index) {
   if (index < 0 || my_list->cur_size <= index) {
-    printf("Index out of bounds: %d when it should be between 0 and %d\n", index, my_list->cur_size-1);
+    printf("Index %d out of bounds: should be between 0 and %d\n", index, my_list->cur_size-1);
     return -1;
   }
 
