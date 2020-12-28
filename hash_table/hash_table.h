@@ -29,7 +29,7 @@ hash_table* ht__init() {
   new_ht->size = HT_SIZE;
 
   for (int i=0; i<HT_SIZE; i++) {
-    new_ht->table[i] = NULL;
+    new_ht->table[i] = ll__init();
   }
 
   return new_ht;

@@ -4,52 +4,115 @@
 #include <stdlib.h>
 
 
-typedef struct linked_list_type {
+//=====================//
+//       Structs       //
+//=====================//
+
+// Node of a linked list
+
+typedef struct node_type {
    int val;
-   struct linked_list_type* next;
+   struct node_type* next;
+} node;
+
+
+
+
+
+// Header for a linked list -> this is what is directly interacted with
+
+typedef struct linked_list_type {
+   int len;
+   node* head;
+   node* tail;
 } linked_list;
 
 
 
-// Initializes a linked list with a single node with a value v
-linked_list* ll__init(int v) {
+
+
+
+//=====================//
+//       Methods       //
+//=====================//
+
+
+
+// Initializes an empty linked_list
+
+linked_list* ll__init() {
   linked_list* new_ll = malloc(sizeof(linked_list));
-  new_ll->val = v;
-  new_ll->next = NULL;
+  new_ll->len = 0;
+  new_ll->head = NULL;
+  new_ll->tail = NULL;
 
   return new_ll;
 }
 
 
 
+
+
+
 // Appends a value v to a linked list
+
 void ll__append(linked_list* my_ll, int v) {
-  linked_list* new_node = ll__init(v);
 
-  linked_list* lp = my_ll;
-  while (lp->next) lp = lp->next;
+  // Initializes a new node
+  node* new_node = malloc(sizeof(node));
+  new_node->val = v;
+  new_node->next = NULL;
 
-  lp->next = new_node;
+
+  // If linked list is empty, sets head and tail to the new node
+  if (my_ll->len == 0) {
+    my_ll->head = new_node;
+    my_ll->tail = new_node;
+  }
+
+  // If linked list is nonempty, appends to end of the list
+  else {
+    node* old_tail = my_ll->tail;
+    old_tail->next = new_node;
+    my_ll->tail = new_node;
+  }
+
+  my_ll->len += 1;
 }
 
 
 
-// Prints a linked list
-void ll__print(linked_list* my_ll) {
 
-  linked_list* lp = my_ll;
-  for (linked_list* lp = my_ll; lp != NULL; lp = lp->next) {
-    printf("%d -> ", lp->val);
+
+
+
+
+// Prints a linked list
+
+void ll__print(linked_list* my_ll) {
+  //printf("LL (len %d): ", my_ll->len);
+
+  for (node* iterator = my_ll->head; iterator != NULL; iterator = iterator->next) {
+    printf("%d -> ", iterator->val);
   }
   printf("NULL\n");
 }
 
 
 
-// Frees all the nodes of a linked list
+
+
+
+
+// Frees all the memory of a linked list
+
 void ll__free(linked_list* my_ll) {
-  if (my_ll->next != NULL) {
-    ll__free(my_ll->next);
+  node* iterator = my_ll->head;
+
+  while (iterator != NULL) {
+    node* prev_node = iterator;
+    iterator = iterator->next;
+    free(prev_node);
   }
 
   free(my_ll);
@@ -57,30 +120,22 @@ void ll__free(linked_list* my_ll) {
 
 
 
+
+
 // Returns 1 if a value v is in the list, 0 if not
+
 int ll__search(linked_list* my_ll, int v) {
-  linked_list* lp = my_ll;
 
-  while (lp != NULL) {
-    if (lp->val == v) return 1;
-    lp = lp->next;
+  for (node* iterator = my_ll->head; iterator != NULL; iterator = iterator->next) {
+    if (iterator->val == v) return 1;
   }
-
   return 0;
 }
 
 
 
-// Returns the length of the linked list
-int ll__len(linked_list* my_ll) {
-  int len = 0;
-  for (linked_list* lp = my_ll; lp != NULL; lp = lp->next) {
-    len++;
-  }
 
-  return len;
 
-}
 
 
 #endif
