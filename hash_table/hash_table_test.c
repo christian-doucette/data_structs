@@ -2,13 +2,15 @@
 #include "hash_table.h"
 
 int main() {
-  hash_table* my_ht = ht__init();
+  hash_table* my_ht = ht__init(5);
   ht__print(my_ht);
 
 
   ht__insert(my_ht, 5);
   ht__insert(my_ht, 6);
   ht__insert(my_ht, 3);
+  ht__insert(my_ht, 8);
+
 
   ht__print(my_ht);
 
