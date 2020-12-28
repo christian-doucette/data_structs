@@ -18,7 +18,35 @@ int main() {
   list__append(my_list, 5);
   list__print(my_list);
 
-  printf("%d\n", list__index(my_list, 1));
+  list__remove_last(my_list);
+  list__print(my_list);
+
+  list__remove_last(my_list);
+  list__print(my_list);
+
+  list__remove_last(my_list);
+  list__print(my_list);
+
+  list__remove_last(my_list);
+  list__print(my_list);
+
+  list__remove_last(my_list);
+  list__print(my_list);
+
+  list__remove_last(my_list);
+  list__print(my_list);
+
+  list__append(my_list, 65);
+  list__append(my_list, 66);
+  list__append(my_list, 67);
+  list__append(my_list, 68);
+  list__append(my_list, 69);
+
+
+  list__print(my_list);
+
+
+  printf("%d\n", list__index(my_list, 0));
   printf("%d\n", list__index(my_list, 10));
 
 

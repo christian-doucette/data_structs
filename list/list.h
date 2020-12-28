@@ -15,11 +15,11 @@ typedef struct list_type {
 list* list__init(int v) {
   list* new_list = malloc(sizeof(list));
 
-  new_list->vals = malloc(sizeof(int));
+  new_list->vals = malloc(4 * sizeof(int));
   new_list->vals[0] = v;
 
   new_list->cur_size = 1;
-  new_list->max_size = 1;
+  new_list->max_size = 4;
 
   return new_list;
 }
@@ -63,11 +63,33 @@ void list__append(list* my_list, int v) {
 
 // Appends a value v to a list
 void list__remove_last(list* my_list) {
-  // Currently don't deallocate any memory for this operation
-  // Doing that might be good, depending on how it's used
+  // If list is empty, notifies and does nothing
+  if (my_list->cur_size == 0) {
+    printf("This list is empty.\n");
+    return;
+  }
+
   my_list->cur_size -= 1;
+  int cur_size = my_list->cur_size;
+
+  // Deallocating half the memory if it is a quarter of max size (with a minimum size of 4)
+  if (4 * cur_size <= my_list->max_size && 1 < cur_size) {
+    printf("Deallocating some memory: cur_size: %d, new max_size: %d, old max_size: %d\n", cur_size, 2*cur_size, my_list->max_size);
+    int* new_vals = malloc(2 * cur_size * sizeof(int));
+
+    for (int i=0; i<cur_size; i++) {
+      new_vals[i] = my_list->vals[i];
+    }
+
+    free(my_list->vals);
+    my_list->vals = new_vals;
+
+    my_list->max_size = 2 * cur_size;
+  }
+
   return;
 }
+
 
 
 
@@ -75,11 +97,11 @@ void list__remove_last(list* my_list) {
 void list__print(list* my_list) {
   printf("[");
 
-  for (int i=0; i<my_list->cur_size-1; i++) {
-    printf("%d, ", my_list->vals[i]);
+  for (int i=0; i<my_list->cur_size; i++) {
+    printf(" %d ", my_list->vals[i]);
   }
 
-  printf("%d]\n", my_list->vals[my_list->cur_size - 1]);
+  printf("]\n");
 
 }
 
