@@ -1,6 +1,8 @@
 #ifndef LINKED_LIST
-#include <stdlib.h>
 #define LINKED_LIST
+
+#include <stdlib.h>
+
 
 typedef struct linked_list_type {
    int val;
@@ -10,7 +12,7 @@ typedef struct linked_list_type {
 
 
 // Initializes a linked list with a single node with a value v
-linked_list* init_ll(int v) {
+linked_list* ll__init(int v) {
   linked_list* new_ll = malloc(sizeof(linked_list));
   new_ll->val = v;
   new_ll->next = NULL;
@@ -21,8 +23,8 @@ linked_list* init_ll(int v) {
 
 
 // Appends a value v to a linked list
-void append_ll(linked_list* my_ll, int v) {
-  linked_list* new_node = init_ll(v);
+void ll__append(linked_list* my_ll, int v) {
+  linked_list* new_node = ll__init(v);
 
   linked_list* lp = my_ll;
   while (lp->next) lp = lp->next;
@@ -33,7 +35,7 @@ void append_ll(linked_list* my_ll, int v) {
 
 
 // Prints a linked list
-void print_ll(linked_list* my_ll) {
+void ll__print(linked_list* my_ll) {
 
   linked_list* lp = my_ll;
   for (linked_list* lp = my_ll; lp != NULL; lp = lp->next) {
@@ -45,9 +47,9 @@ void print_ll(linked_list* my_ll) {
 
 
 // Frees all the nodes of a linked list
-void free_ll(linked_list* my_ll) {
+void ll__free(linked_list* my_ll) {
   if (my_ll->next != NULL) {
-    free_ll(my_ll->next);
+    ll__free(my_ll->next);
   }
 
   free(my_ll);
@@ -56,7 +58,7 @@ void free_ll(linked_list* my_ll) {
 
 
 // Returns 1 if a value v is in the list, 0 if not
-int search_ll(linked_list* my_ll, int v) {
+int ll__search(linked_list* my_ll, int v) {
   linked_list* lp = my_ll;
 
   while (lp != NULL) {
@@ -70,7 +72,7 @@ int search_ll(linked_list* my_ll, int v) {
 
 
 // Returns the length of the linked list
-int len_ll(linked_list* my_ll) {
+int ll__len(linked_list* my_ll) {
   int len = 0;
   for (linked_list* lp = my_ll; lp != NULL; lp = lp->next) {
     len++;

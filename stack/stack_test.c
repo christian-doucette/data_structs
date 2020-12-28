@@ -18,6 +18,9 @@ int main() {
   stack__push(my_stack, 5);
   stack__print(my_stack);
 
+  stack__push(my_stack, 6);
+
+
   printf("Peeked val: %d\n",   stack__peek(my_stack));
   stack__print(my_stack);
 
@@ -47,6 +50,8 @@ int main() {
   stack__print(my_stack);
 
   printf("Stack is empty?: %d\n", stack__is_empty(my_stack));
+
+  stack__free(my_stack);
 
 
 

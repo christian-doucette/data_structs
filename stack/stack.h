@@ -3,7 +3,7 @@
 #define STACK
 
 // Stack data Structure (using dynamic array)
-typedef struct stack_type {
+typedef struct {
    int *vals;
    int cur_size; // amount of memory currently used
    int max_size; // amount of memory currently allocated
@@ -75,7 +75,7 @@ int stack__pop(stack* my_stack) {
 
 
   // Deallocating half the memory if it is a quarter of max size (with a minimum size of 4)
-  if (4 * cur_size <= my_stack->max_size && 1 < cur_size) {
+  if (4 * cur_size <= my_stack->max_size && 4 < my_stack->max_size) {
     //printf("Deallocating some memory: cur_size: %d, new max_size: %d, old max_size: %d\n", cur_size, 2*cur_size, my_stack->max_size);
     int* new_vals = malloc(2 * cur_size * sizeof(int));
 
@@ -105,6 +105,8 @@ int stack__peek(stack* my_stack) {
 
   else return my_stack->vals[top_index];
 }
+
+
 
 
 int stack__is_empty(stack* my_stack) {
