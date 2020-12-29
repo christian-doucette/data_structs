@@ -8,7 +8,7 @@ int main() {
   bst__insert(my_bst, 16);
   bst__insert(my_bst, 3);
   bst__insert(my_bst, 7);
-  bst__insert(my_bst, 1);
+  bst__insert(my_bst, 100);
 
   bst__print(my_bst);
   printf("\n");
@@ -17,6 +17,8 @@ int main() {
 
   printf("height: %d\n", bst__height(my_bst));
   printf("num nodes: %d\n", bst__num_nodes(my_bst));
+  printf("min value: %d\n", bst__min(my_bst));
+
 
 
   bst__free(my_bst);

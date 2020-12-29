@@ -56,7 +56,7 @@ void bst__insert(bst* my_bst, int v) {
 
 
 
-// Prints a bst 
+// Prints a bst
 void bst__print(bst* my_bst) {
 
   printf("%d", my_bst->val);
@@ -120,6 +120,27 @@ int bst__search(bst* my_bst, int v) {
     return bst__search(my_bst->right, v);
   }
 }
+
+
+// Returns minimum value in a bst
+int bst__min(bst* my_bst) {
+  // Originally called on a null BST
+  if (my_bst == NULL) {
+    return -1;
+  }
+
+  // Did find it
+  else if (my_bst->left == NULL) {
+    return my_bst->val;
+  }
+
+  // Search left subtree
+  else {
+    return bst__min(my_bst->left);
+  }
+}
+
+
 
 
 
