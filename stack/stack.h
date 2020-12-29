@@ -53,7 +53,7 @@ void stack__push(stack* my_stack, int v) {
 
 
 
-// Pops the
+// Pops the value at the top of the stack
 int stack__pop(stack* my_stack) {
 
   if (stack__is_empty(my_stack)) {
@@ -71,7 +71,7 @@ int stack__pop(stack* my_stack) {
 
 
 
-
+// Returns the value at the top of the stack
 int stack__peek(stack* my_stack) {
   if (stack__is_empty(my_stack)) {
     printf("Stack is empty");

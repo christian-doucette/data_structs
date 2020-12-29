@@ -10,8 +10,8 @@ typedef struct bst_type {
 
 
 
-// Initializes a bst with a single node with a value v
-bst* init_bst(int v) {
+// Initializes a single bst node with a value v
+bst* bst__init(int v) {
   bst* new_bst = malloc(sizeof(bst));
   new_bst->val = v;
   new_bst->left  = NULL;
@@ -22,8 +22,8 @@ bst* init_bst(int v) {
 
 
 
-// Adds a value v to a bst
-void add_bst(bst* my_bst, int v) {
+// Inserts a value v to a bst
+void bst__insert(bst* my_bst, int v) {
   // Doesn't handle duplicate values
   if (v == my_bst->val) {
     printf("Duplicates not allowed\n");
@@ -32,46 +32,46 @@ void add_bst(bst* my_bst, int v) {
   // if v should go in the left subtree
   else if (v < my_bst->val) {
     if (my_bst->left == NULL) {
-      bst* new_bst = init_bst(v);
+      bst* new_bst = bst__init(v);
       my_bst->left = new_bst;
     }
 
     else {
-      add_bst(my_bst->left, v);
+      bst__insert(my_bst->left, v);
     }
   }
 
   // if v should go in the right subtree
   else if (v > my_bst->val) {
     if (my_bst->right == NULL) {
-      bst* new_bst = init_bst(v);
+      bst* new_bst = bst__init(v);
       my_bst->right = new_bst;
     }
 
     else {
-      add_bst(my_bst->right, v);
+      bst__insert(my_bst->right, v);
     }
   }
 }
 
 
 
-// Prints a linked list
-void print_bst(bst* my_bst) {
+// Prints a bst 
+void bst__print(bst* my_bst) {
 
   printf("%d", my_bst->val);
 
   // Prints left subtree
   if (my_bst->left != NULL) {
     printf(" l(");
-    print_bst(my_bst->left);
+    bst__print(my_bst->left);
     printf(")");
   }
 
   // Prints right subtree
   if (my_bst->right != NULL) {
     printf(" r(");
-    print_bst(my_bst->right);
+    bst__print(my_bst->right);
     printf(")");
   }
 }
@@ -79,16 +79,16 @@ void print_bst(bst* my_bst) {
 
 
 // Frees all the nodes of a bst
-void free_bst(bst* my_bst) {
+void bst__free(bst* my_bst) {
 
   // Frees nodes in left subtree
   if (my_bst->left != NULL) {
-    free_bst(my_bst->left);
+    bst__free(my_bst->left);
   }
 
   // Frees nodes in right subtree
   if (my_bst->right != NULL) {
-    free_bst(my_bst->right);
+    bst__free(my_bst->right);
   }
 
   // Frees root node
@@ -99,7 +99,7 @@ void free_bst(bst* my_bst) {
 
 
 // Returns 1 if a value v is in the bst, 0 if not
-int search_bst(bst* my_bst, int v) {
+int bst__search(bst* my_bst, int v) {
   // Didn't find it
   if (my_bst == NULL) {
     return 0;
@@ -112,26 +112,26 @@ int search_bst(bst* my_bst, int v) {
 
   // Search left subtree
   else if (v < my_bst->val) {
-    return search_bst(my_bst->left, v);
+    return bst__search(my_bst->left, v);
   }
 
   // Search right subtree
   else {
-    return search_bst(my_bst->right, v);
+    return bst__search(my_bst->right, v);
   }
 }
 
 
 
 // Returns the number of nodes in the bst
-int num_nodes_bst(bst* my_bst) {
+int bst__num_nodes(bst* my_bst) {
   if (my_bst == NULL) {
     return 0;
   }
 
   else {
-    int num_l = num_nodes_bst(my_bst->left);
-    int num_r = num_nodes_bst(my_bst->right);
+    int num_l = bst__num_nodes(my_bst->left);
+    int num_r = bst__num_nodes(my_bst->right);
     return 1 + num_l + num_r;
   }
 }
@@ -140,14 +140,14 @@ int num_nodes_bst(bst* my_bst) {
 
 
 // Returns the height of the bst
-int height_bst(bst* my_bst) {
+int bst__height(bst* my_bst) {
   if (my_bst == NULL) {
     return 0;
   }
 
   else {
-    int height_l = height_bst(my_bst->left);
-    int height_r = height_bst(my_bst->right);
+    int height_l = bst__height(my_bst->left);
+    int height_r = bst__height(my_bst->right);
 
     if (height_l < height_r) {
       return 1 + height_r;
