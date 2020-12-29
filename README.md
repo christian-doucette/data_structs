@@ -1,11 +1,11 @@
 # Data Structs
 
 Implementation of common data structures in C. Currently includes:
-1. [Linked List](#linked-list)
-2. [Binary Search Tree](#binary-search-tree)
-3. [List](#list)
-4. [Stack](#stack)
-5. [Hash Table](#hash-table)
+1. [Linked List](#linked-list-code)
+2. [Binary Search Tree](#binary-search-tree-code)
+3. [List](#list-code)
+4. [Stack](#stack-code)
+5. [Hash Table](#hash-table-code)
 
 
 ## Motivation
@@ -59,7 +59,7 @@ Methods:
 5. Peek - O(1): Returns the value at the top of the stack
 
 ## Hash Table ([code](https://github.com/christian-doucette/data_structs/blob/master/hash_table/hash_table.h))
-My hash table is a closed address hash table that uses my [linked lists](#linked-lists) to resolve collisions. It takes the size of the table as a argument to init().
+My hash table is a closed address hash table that uses my [linked lists](#linked-list-code) to resolve collisions. It takes the size of the table as a argument to init().
 
 Methods:
 Insert - O(1): Inserts a value into the hash table
