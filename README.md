@@ -25,7 +25,7 @@ My linked list is a singly linked list that stores integer values. It also inclu
 
 Methods:
 1. Append - O(1): appends a value onto the end of a linked list
-3. Search - O(n): checks if a value is in the linked list
+3. Search - O(n): checks if a value is in the linked list  
 
 
 ### Binary Search Tree ([code](https://github.com/christian-doucette/data_structs/blob/master/bst/bst.h))
@@ -36,17 +36,18 @@ Methods:
 2. Search - O(log(n)): Checks if the BST contains a specific value
 3. Min - O(log(n)): Returns the minimum value in the BST
 4. Num Nodes - O(n): Returns the number of nodes in the BST
-5. Height - O(n): Returns the height of the BST
+5. Height - O(n): Returns the height of the BST  
 
 
-## List ([code](https://github.com/christian-doucette/data_structs/blob/master/list/list.h))
+### List ([code](https://github.com/christian-doucette/data_structs/blob/master/list/list.h))
 My list is a dynamically-sized array, like Python lists or Java Arraylists. It works by doubling the size of the array whenver more space is needed. Also, if the array ever reaches a quarter of its max size, it halves the array size. For both append and remove, since the costly reallocation only occurs rarely, amortized time complexity is O(1).
 
 Methods:
 1. Append - O(1): Appends a value v to the list
 2. Remove Last - O(1): Removes the last value of the list
 3. Index - O(1): Returns value at a given index
-4. Len - O(1): Returns current length of the list
+4. Len - O(1): Returns current length of the list  
+
 
 ## Stack ([code](https://github.com/christian-doucette/data_structs/blob/master/stack/stack.h))
 My stack takes in size as an argument to its init() function.
@@ -56,7 +57,8 @@ Methods:
 2. Is Full - O(1): Checks if the stack is full
 3. Push - O(1): Pushes a value onto the top of the stack
 4. Pop - O(1): Removes a value from the top of the stack and returns it
-5. Peek - O(1): Returns the value at the top of the stack
+5. Peek - O(1): Returns the value at the top of the stack  
+
 
 ## Hash Table ([code](https://github.com/christian-doucette/data_structs/blob/master/hash_table/hash_table.h))
 My hash table is a closed address hash table that uses my [linked lists](#linked-list-code) to resolve collisions. It takes the size of the table as a argument to init().
