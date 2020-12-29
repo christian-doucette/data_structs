@@ -17,7 +17,7 @@ The motivation of this project is to gain experience with:
 Additionally, since C's standard library does not include many important data structures, I wanted to have a nice data structure library to use on future projects in C.
 
 ## Details
-Each data structure includes init(), print(), and free() methods. Below, I describe the additional methods for each data structure. I also include the average-case time complexity for my implementations.
+Each data structure includes init(), print(), and free() methods. Below, I describe the additional methods for each data structure. I also include the average-case time complexity for my implementations.  
 <br/>
 
 ### Linked List ([code](https://github.com/christian-doucette/data_structs/blob/master/linked_list/linked_list.h))
@@ -28,7 +28,7 @@ Methods:
 2. Search - O(n): checks if a value is in the linked list  
 3. Remove Head - O(1): removes the head of the linked list and returns its value
 
-Also, note that this linked list can be used as an efficient queue implementation, by using Append for enqueue and Remove Head for dequeue.
+Also, note that this linked list can be used as an efficient queue implementation, by using Append for enqueue and Remove Head for dequeue.  
 <br/>
 
 ### Binary Search Tree ([code](https://github.com/christian-doucette/data_structs/blob/master/bst/bst.h))
