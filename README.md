@@ -17,7 +17,7 @@ The motivation of this project is to gain experience with:
 Additionally, since C's standard library does not include many important data structures, I wanted to have a nice data structure library to use on future projects in C.
 
 ## Details
-Each data structures include a init(), print(), and free() method. Below, I describe the additional methods for each data structure. I also include the average-case time complexity for my implementations.
+Each data structure includes init(), print(), and free() methods. Below, I describe the additional methods for each data structure. I also include the average-case time complexity for my implementations.
 <br/>
 
 ### Linked List ([code](https://github.com/christian-doucette/data_structs/blob/master/linked_list/linked_list.h))
@@ -29,7 +29,7 @@ Methods:
 <br/>
 
 ### Binary Search Tree ([code](https://github.com/christian-doucette/data_structs/blob/master/bst/bst.h))
-My binary search tree is a standard BST that stores integers. Currently it does not rebalance. So, as insert, search, and min depend on the height of the tree, their abosolute worst case complexities are O(n) - however, average case is O(log(n))
+My binary search tree is a standard BST that stores integers. Currently it does not rebalance. So, as insert, search, and min depend on the height of the tree, their absolute worst case complexities are O(n) - however, average case is O(log(n))
 
 Methods:
 1. Insert - O(log(n)): Inserts a value into the BST
@@ -40,7 +40,7 @@ Methods:
 <br/>
 
 ### List ([code](https://github.com/christian-doucette/data_structs/blob/master/list/list.h))
-My list is a dynamically-sized array, like Python lists or Java Arraylists. It works by doubling the size of the array whenver more space is needed. Also, if the array ever reaches a quarter of its max size, it halves the array size. For both append and remove, since the costly reallocation only occurs rarely, amortized time complexity is O(1).
+My list is a dynamically-sized array, like Python lists or Java ArrayLists. It works by doubling the size of the array whenever more space is needed. Also, if the array ever reaches a quarter of its max size, it halves the array size. For both append and remove, since the costly reallocation only occurs rarely, amortized time complexity is O(1).
 
 Methods:
 1. Append - O(1): Appends a value v to the list
@@ -50,7 +50,7 @@ Methods:
 <br/>
 
 ### Stack ([code](https://github.com/christian-doucette/data_structs/blob/master/stack/stack.h))
-My stack takes in size as an argument to its init() function.
+My stack takes in size as an argument to its init() method.
 
 Methods:
 1. Is Empty - O(1): Checks if the stack is empty
@@ -61,8 +61,9 @@ Methods:
 <br/>
 
 ### Hash Table ([code](https://github.com/christian-doucette/data_structs/blob/master/hash_table/hash_table.h))
-My hash table is a closed address hash table that uses my [linked lists](#linked-list-code) to resolve collisions. It takes the size of the table as a argument to init().
+My hash table is a closed address hash table that uses my [linked lists](#linked-list-code) to resolve collisions. The init() method for my hash tables takes in the size of the table as an argument.
 
 Methods:
-Insert - O(1): Inserts a value into the hash table
-Search - O(1): Checks if a value is in the hash table
+1. Insert - O(1): Inserts a value into the hash table
+2. Search - O(1): Checks if a value is in the hash table
+<br/>
