@@ -54,6 +54,41 @@ linked_list* ll__init() {
 
 
 
+// Prints a linked list
+
+void ll__print(linked_list* my_ll) {
+  //printf("LL (len %d): ", my_ll->len);
+
+  for (node* iterator = my_ll->head; iterator != NULL; iterator = iterator->next) {
+    printf("%d -> ", iterator->val);
+  }
+  printf("NULL\n");
+}
+
+
+
+
+
+
+// Frees all the memory of a linked list
+
+void ll__free(linked_list* my_ll) {
+  node* iterator = my_ll->head;
+
+  while (iterator != NULL) {
+    node* prev_node = iterator;
+    iterator = iterator->next;
+    free(prev_node);
+  }
+
+  free(my_ll);
+}
+
+
+
+
+
+
 // Appends a value v to a linked list
 
 void ll__append(linked_list* my_ll, int v) {
@@ -85,43 +120,6 @@ void ll__append(linked_list* my_ll, int v) {
 
 
 
-
-
-// Prints a linked list
-
-void ll__print(linked_list* my_ll) {
-  //printf("LL (len %d): ", my_ll->len);
-
-  for (node* iterator = my_ll->head; iterator != NULL; iterator = iterator->next) {
-    printf("%d -> ", iterator->val);
-  }
-  printf("NULL\n");
-}
-
-
-
-
-
-
-
-// Frees all the memory of a linked list
-
-void ll__free(linked_list* my_ll) {
-  node* iterator = my_ll->head;
-
-  while (iterator != NULL) {
-    node* prev_node = iterator;
-    iterator = iterator->next;
-    free(prev_node);
-  }
-
-  free(my_ll);
-}
-
-
-
-
-
 // Returns 1 if a value v is in the list, 0 if not
 
 int ll__search(linked_list* my_ll, int v) {
@@ -131,6 +129,30 @@ int ll__search(linked_list* my_ll, int v) {
   }
   return 0;
 }
+
+
+
+
+
+// Removes the head of the linked list, and returns its value
+
+int ll__remove_head(linked_list* my_ll) {
+
+  if (my_ll->head == NULL) {
+    printf("The Linked List is empty");
+    return -1;
+  }
+
+  else {
+    node* old_head = my_ll->head;
+    int old_head_val = old_head->val;
+
+    my_ll->head = old_head->next;
+    free(old_head);
+    return old_head_val;
+  }
+}
+
 
 
 

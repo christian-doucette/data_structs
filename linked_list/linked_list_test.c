@@ -14,6 +14,12 @@ int main() {
 
   ll__print(my_ll);
 
+  printf("Removed head: %d\n", ll__remove_head(my_ll));
+  
+  ll__print(my_ll);
+
+
+
   ll__append(my_ll, 100);
   ll__print(my_ll);
 

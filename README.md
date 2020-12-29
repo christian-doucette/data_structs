@@ -25,7 +25,10 @@ My linked list is a singly linked list that stores integer values. It also inclu
 
 Methods:
 1. Append - O(1): appends a value onto the end of a linked list
-3. Search - O(n): checks if a value is in the linked list  
+2. Search - O(n): checks if a value is in the linked list  
+3. Remove Head - O(1): removes the head of the linked list and returns its value
+
+Also, note that this linked list can be used as an efficient queue implementation, by using Append for enqueue and Remove Head for dequeue.
 <br/>
 
 ### Binary Search Tree ([code](https://github.com/christian-doucette/data_structs/blob/master/bst/bst.h))
