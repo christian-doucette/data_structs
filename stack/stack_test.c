@@ -2,7 +2,7 @@
 #include "stack.h"
 
 int main() {
-  stack* my_stack = stack__init();
+  stack* my_stack = stack__init(4);
   stack__print(my_stack);
 
   stack__push(my_stack, 5);
@@ -44,7 +44,6 @@ int main() {
   stack__push(my_stack, 66);
   stack__push(my_stack, 67);
   stack__push(my_stack, 68);
-  stack__push(my_stack, 69);
 
 
   stack__print(my_stack);
