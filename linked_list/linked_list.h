@@ -4,12 +4,11 @@
 #include <stdlib.h>
 
 
-//=====================//
-//       Structs       //
-//=====================//
+//=========================//
+//   Linked List Struct    //
+//=========================//
 
 // Node of a linked list
-
 typedef struct node_type {
    int val;
    struct node_type* next;
@@ -20,7 +19,6 @@ typedef struct node_type {
 
 
 // Header for a linked list -> this is what is directly interacted with
-
 typedef struct linked_list_type {
    int len;
    node* head;
@@ -32,14 +30,13 @@ typedef struct linked_list_type {
 
 
 
-//=====================//
-//       Methods       //
-//=====================//
+//==========================//
+//    Linked List Methods   //
+//==========================//
 
 
 
 // Initializes an empty linked_list
-
 linked_list* ll__init() {
   linked_list* new_ll = malloc(sizeof(linked_list));
   new_ll->len = 0;
@@ -55,13 +52,12 @@ linked_list* ll__init() {
 
 
 // Prints a linked list
-
 void ll__print(linked_list* my_ll) {
-  //printf("LL (len %d): ", my_ll->len);
 
   for (node* iterator = my_ll->head; iterator != NULL; iterator = iterator->next) {
     printf("%d -> ", iterator->val);
   }
+
   printf("NULL\n");
 }
 
@@ -71,7 +67,6 @@ void ll__print(linked_list* my_ll) {
 
 
 // Frees all the memory of a linked list
-
 void ll__free(linked_list* my_ll) {
   node* iterator = my_ll->head;
 
@@ -90,7 +85,6 @@ void ll__free(linked_list* my_ll) {
 
 
 // Appends a value v to a linked list
-
 void ll__append(linked_list* my_ll, int v) {
 
   // Initializes a new node
@@ -121,7 +115,6 @@ void ll__append(linked_list* my_ll, int v) {
 
 
 // Returns 1 if a value v is in the list, 0 if not
-
 int ll__search(linked_list* my_ll, int v) {
 
   for (node* iterator = my_ll->head; iterator != NULL; iterator = iterator->next) {
@@ -135,7 +128,6 @@ int ll__search(linked_list* my_ll, int v) {
 
 
 // Removes the head of the linked list, and returns its value
-
 int ll__remove_head(linked_list* my_ll) {
 
   if (my_ll->head == NULL) {
