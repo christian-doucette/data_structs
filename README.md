@@ -6,6 +6,7 @@ Implementation of common data structures in C. Currently includes:
 3. [List](#list-code)
 4. [Stack](#stack-code)
 5. [Hash Table](#hash-table-code)
+6. [Heap](#heap-code)
 
 
 ## Motivation
@@ -69,4 +70,16 @@ My hash table is a closed address hash table that uses my [linked lists](#linked
 Methods:
 1. Insert - O(1): Inserts a value into the hash table
 2. Search - O(1): Checks if a value is in the hash table
+<br/>
+
+
+### Heap ([code](https://github.com/christian-doucette/data_structs/blob/master/heap/heap.h))
+My heap is a min-heap storing integers. The init() method for my heap takes in the size of the heap as an argument.
+
+Methods:
+1. Is Empty - O(1): Checks if the heap is empty
+2. Is Full - O(1): Checks if the heap is full
+3. Insert - O(log(n)): Inserts a new value into the heap
+4. Min - O(1): Returns the minimum value in the heap
+5. Extract Min - O(log(n)): Returns the minimum value and removes it from the heap
 <br/>
