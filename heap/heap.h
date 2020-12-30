@@ -4,8 +4,9 @@
 #include <stdlib.h>
 
 
-// Heap Data Structure
-
+//=============================//
+//         Heap Struct         //
+//=============================//
 
 // I am starting at index 1, so for index i:
 // - Parent is i/2
@@ -18,6 +19,74 @@ typedef struct {
    int cur_size;  // current size of the heap
    int max_size; // maximum size of the heap
 } heap;
+
+
+
+
+
+//=============================//
+//      "Private Methods"      //
+//=============================//
+
+// These functions are only used for organizing the methods listed below
+// They are not meant to be called directly on a heap
+
+
+
+// Given a heap with a value added to the end, turns into a valid heap
+void percolate_up(heap* my_heap) {
+  int index = my_heap->cur_size;
+
+  // If needs to swap with parent
+  while (index > 1 && my_heap->data[index] < my_heap->data[index/2]) {
+
+    // Swaps with parent
+    int temp = my_heap->data[index];
+    my_heap->data[index] = my_heap->data[index/2];
+    my_heap->data[index/2] = temp;
+
+    index = index/2;
+  }
+
+}
+
+
+
+// Given a heap with a value added to the start, turns into a valid heap
+void percolate_down(heap* my_heap) {
+  int index = 1;
+  // If should swap with left or right child
+  while ((2*index <= my_heap->cur_size && my_heap->data[index] > my_heap->data[2*index])
+  || (2*index + 1 <= my_heap->cur_size && my_heap->data[index] > my_heap->data[2*index + 1])) {
+
+    // Swapping with right child
+    int index_to_swap;
+    if (2*index + 1 <= my_heap->cur_size &&  my_heap->data[2*index + 1] <  my_heap->data[2 * index]) {
+      index_to_swap = 2*index + 1;
+    }
+    // Swapping with left child
+    else {
+      index_to_swap = 2*index;
+    }
+
+    int temp = my_heap->data[index];
+    my_heap->data[index] = my_heap->data[index_to_swap];
+    my_heap->data[index_to_swap] = temp;
+
+    index = index_to_swap;
+  }
+
+}
+
+
+
+
+
+
+
+//=============================//
+//         Heap Methods        //
+//=============================//
 
 
 
@@ -70,6 +139,7 @@ int heap__is_empty(heap* my_heap) {
 
 
 
+
 // Checks if the heap is full
 int heap__is_full(heap* my_heap) {
   return (my_heap->cur_size == my_heap->max_size);
@@ -95,33 +165,6 @@ int heap__min(heap* my_heap) {
 
 
 
-// Inserts a value v into the heap
-void heap__insert(heap* my_heap, int v) {
-
-  if (heap__is_full(my_heap)) {
-    printf("This heap is full.\n");
-  }
-
-  else {
-    my_heap->cur_size += 1;
-    my_heap->data[my_heap->cur_size] = v;
-
-    // Percolates up to maintain heap property
-    int index = my_heap->cur_size;
-    // If needs to swap with parent
-    while (index > 1 && my_heap->data[index] < my_heap->data[index/2]) {
-      int temp = my_heap->data[index];
-      my_heap->data[index] = my_heap->data[index/2];
-      my_heap->data[index/2] = temp;
-
-      index = index/2;
-    }
-  }
-}
-
-
-
-
 // Removes the minimum value in the heap
 int heap__extract_min(heap* my_heap) {
 
@@ -138,36 +181,31 @@ int heap__extract_min(heap* my_heap) {
       my_heap->data[1] = my_heap->data[my_heap->cur_size + 1];
 
       // Percolates down to maintain heap property
-      int index = 1;
-      // If should swap with left or right child
-      while ((2*index <= my_heap->cur_size && my_heap->data[index] > my_heap->data[2*index])
-      || (2*index + 1 <= my_heap->cur_size && my_heap->data[index] > my_heap->data[2*index + 1])) {
-
-        // Swapping with right child
-        int index_to_swap;
-        if (2*index + 1 <= my_heap->cur_size &&  my_heap->data[2*index + 1] <  my_heap->data[2 * index]) {
-          index_to_swap = 2*index + 1;
-        }
-        // Swapping with left child
-        else {
-          index_to_swap = 2*index;
-        }
-
-        int temp = my_heap->data[index];
-        my_heap->data[index] = my_heap->data[index_to_swap];
-        my_heap->data[index_to_swap] = temp;
-
-        index = index_to_swap;
-
-
-
-      }
+      percolate_down(my_heap);
     }
     return min_val;
   }
 }
 
 
+
+
+
+// Inserts a value v into the heap
+void heap__insert(heap* my_heap, int v) {
+
+  if (heap__is_full(my_heap)) {
+    printf("This heap is full.\n");
+  }
+
+  else {
+    my_heap->cur_size += 1;
+    my_heap->data[my_heap->cur_size] = v;
+
+    // Percolates up to maintain heap property
+    percolate_up(my_heap);
+  }
+}
 
 
 
