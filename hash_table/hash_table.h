@@ -13,8 +13,11 @@ typedef struct {
 
 
 
-// Using identity as hash function for now
+// Using 32-bit integer hash function from here: https://stackoverflow.com/a/12996028/14056167
 int hash(int x) {
+  x = ((x >> 16) ^ x) * 0x45D9F3B;
+  x = ((x >> 16) ^ x) * 0X45D9F3B;
+  x = (x >> 16) ^ x;
   return x;
 }
 
@@ -64,6 +67,7 @@ void ht__print(hash_table* my_ht) {
     printf("%d: ", i);
     ll__print(my_ht->table[i]);
   }
+  printf("==================\n\n");
 }
 
 
