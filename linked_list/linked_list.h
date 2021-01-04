@@ -2,7 +2,7 @@
 #define LINKED_LIST
 
 #include <stdlib.h>
-
+#include <unistd.h>
 
 //=========================//
 //   Linked List Struct    //
@@ -84,6 +84,17 @@ void ll__free(linked_list* my_ll) {
 
 
 
+// Checks if the linked list is empty
+int ll__is_empty(linked_list* my_ll) {
+  return (my_ll->head == NULL);
+}
+
+
+
+
+
+
+
 // Appends a value v to a linked list
 void ll__append(linked_list* my_ll, int v) {
 
@@ -94,7 +105,7 @@ void ll__append(linked_list* my_ll, int v) {
 
 
   // If linked list is empty, sets head and tail to the new node
-  if (my_ll->len == 0) {
+  if (ll__is_empty(my_ll)) {
     my_ll->head = new_node;
     my_ll->tail = new_node;
   }
@@ -130,8 +141,8 @@ int ll__search(linked_list* my_ll, int v) {
 // Removes the head of the linked list, and returns its value
 int ll__remove_head(linked_list* my_ll) {
 
-  if (my_ll->head == NULL) {
-    printf("The Linked List is empty");
+  if (ll__is_empty(my_ll)) {
+    printf("The Linked List is empty\n");
     return -1;
   }
 
@@ -140,11 +151,61 @@ int ll__remove_head(linked_list* my_ll) {
     int old_head_val = old_head->val;
 
     my_ll->head = old_head->next;
+    if (my_ll->head == NULL) my_ll->tail = NULL;
+
     free(old_head);
+    my_ll->len -= 1;
     return old_head_val;
+
   }
 }
 
+
+
+
+
+// Removes the first instance of a value from a linked list - returns 0 if something was removed, 1 otherwise
+int ll__remove_val(linked_list* my_ll, int val) {
+
+  // If the linked list is empty
+  if (ll__is_empty(my_ll)) {
+    return 1;
+  }
+
+
+  // If the value is in the head node, removes head
+  else if (my_ll->head->val == val) {
+    ll__remove_head(my_ll);
+    return 0;
+  }
+
+  // Otherwise, checks the rest of the linked list
+  else {
+    for (node* iterator = my_ll->head; iterator->next != NULL; iterator = iterator->next) {
+
+      // If the next node is the value to be removed
+      if (iterator->next->val == val) {
+        node* node_to_free = iterator->next;
+        iterator->next = node_to_free->next;
+
+        free(node_to_free);
+
+        // If the freed node was the tail, sets tails to its new value
+        if (iterator->next == NULL) {
+          my_ll->tail = iterator;
+        }
+
+
+        my_ll->len -= 1;
+        return 0;
+      }
+    }
+
+    // If the value was not found
+    return 1;
+  }
+
+}
 
 
 
