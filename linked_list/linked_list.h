@@ -2,7 +2,6 @@
 #define LINKED_LIST
 
 #include <stdlib.h>
-#include <unistd.h>
 
 //=========================//
 //   Linked List Struct    //

@@ -106,6 +106,14 @@ void ht__insert(hash_table* my_ht, int key) {
 
 
 
+// Removes a key from a hash_table - returns 0 if it was found, 0 otherwise
+int ht__remove_key(hash_table* my_ht, int key) {
+  int hashed_key = hash(key) % (my_ht->size);
+  return ll__remove_val(my_ht->table[hashed_key], key);
+}
+
+
+
 
 // Checks if a key exists in the table
 int ht__search(hash_table* my_ht, int key) {
