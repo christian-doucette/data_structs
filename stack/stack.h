@@ -1,8 +1,12 @@
 #ifndef STACK
-#include <stdlib.h>
 #define STACK
 
-// Stack Data Structure
+#include <stdlib.h>
+
+//=========================//
+//       Stack Struct      //
+//=========================//
+
 typedef struct {
    int *data;
    int top;  // current top of the stack
@@ -10,6 +14,13 @@ typedef struct {
 } stack;
 
 
+
+
+
+
+//=========================//
+//      Stack Methods      //
+//=========================//
 
 // Initializes an empty stack
 stack* stack__init(int size) {
@@ -24,12 +35,42 @@ stack* stack__init(int size) {
 
 
 
+
+// Prints the stack
+void stack__print(stack* my_stack) {
+  printf("|");
+
+  for (int i = 0; i <= my_stack->top; i++) {
+    printf(" %d |", my_stack->data[i]);
+  }
+
+  printf("->\n");
+
+}
+
+
+
+
+
+// Frees the stack
+void stack__free(stack* my_stack) {
+  free(my_stack->data);
+  free(my_stack);
+}
+
+
+
+
+
+// Checks if the stack is empty
 int stack__is_empty(stack* my_stack) {
   return (my_stack->top == -1);
 }
 
 
 
+
+// Checks if the stack is full
 int stack__is_full(stack* my_stack) {
   return (my_stack->top == my_stack->size - 1);
 }
@@ -79,31 +120,6 @@ int stack__peek(stack* my_stack) {
   }
 
   else return my_stack->data[my_stack->top];
-}
-
-
-
-
-
-
-// Prints the stack
-void stack__print(stack* my_stack) {
-  printf("|");
-
-  for (int i = 0; i <= my_stack->top; i++) {
-    printf(" %d |", my_stack->data[i]);
-  }
-
-  printf("->\n");
-
-}
-
-
-
-// Frees the stack
-void stack__free(stack* my_stack) {
-  free(my_stack->data);
-  free(my_stack);
 }
 
 

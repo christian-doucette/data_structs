@@ -1,6 +1,11 @@
 #ifndef BST
-#include <stdlib.h>
 #define BST
+
+#include <stdlib.h>
+
+//=========================//
+//        BST Struct       //
+//=========================//
 
 typedef struct bst_type {
    int val;
@@ -8,6 +13,15 @@ typedef struct bst_type {
    struct bst_type* right;
 } bst;
 
+
+
+
+
+
+
+//=========================//
+//       BST Methods       //
+//=========================//
 
 
 // Initializes a single bst node with a value v
@@ -22,8 +36,62 @@ bst* bst__init(int v) {
 
 
 
+
+
+
+
+
+// Prints a bst
+void bst__print(bst* my_bst) {
+
+  printf("%d", my_bst->val);
+
+  // Prints left subtree
+  if (my_bst->left != NULL) {
+    printf(" l(");
+    bst__print(my_bst->left);
+    printf(")");
+  }
+
+  // Prints right subtree
+  if (my_bst->right != NULL) {
+    printf(" r(");
+    bst__print(my_bst->right);
+    printf(")");
+  }
+}
+
+
+
+
+
+
+
+// Frees all the nodes of a bst
+void bst__free(bst* my_bst) {
+
+  // Frees nodes in left subtree
+  if (my_bst->left != NULL) {
+    bst__free(my_bst->left);
+  }
+
+  // Frees nodes in right subtree
+  if (my_bst->right != NULL) {
+    bst__free(my_bst->right);
+  }
+
+  // Frees root node
+  free(my_bst);
+}
+
+
+
+
+
+
 // Inserts a value v to a bst
 void bst__insert(bst* my_bst, int v) {
+
   // Doesn't handle duplicate values
   if (v == my_bst->val) {
     printf("Duplicates not allowed\n");
@@ -56,45 +124,6 @@ void bst__insert(bst* my_bst, int v) {
 
 
 
-// Prints a bst
-void bst__print(bst* my_bst) {
-
-  printf("%d", my_bst->val);
-
-  // Prints left subtree
-  if (my_bst->left != NULL) {
-    printf(" l(");
-    bst__print(my_bst->left);
-    printf(")");
-  }
-
-  // Prints right subtree
-  if (my_bst->right != NULL) {
-    printf(" r(");
-    bst__print(my_bst->right);
-    printf(")");
-  }
-}
-
-
-
-// Frees all the nodes of a bst
-void bst__free(bst* my_bst) {
-
-  // Frees nodes in left subtree
-  if (my_bst->left != NULL) {
-    bst__free(my_bst->left);
-  }
-
-  // Frees nodes in right subtree
-  if (my_bst->right != NULL) {
-    bst__free(my_bst->right);
-  }
-
-  // Frees root node
-  printf("Freeing %d\n", my_bst->val);
-  free(my_bst);
-}
 
 
 
@@ -122,6 +151,10 @@ int bst__search(bst* my_bst, int v) {
 }
 
 
+
+
+
+
 // Returns minimum value in a bst
 int bst__min(bst* my_bst) {
   // Originally called on a null BST
@@ -144,6 +177,8 @@ int bst__min(bst* my_bst) {
 
 
 
+
+
 // Returns the number of nodes in the bst
 int bst__num_nodes(bst* my_bst) {
   if (my_bst == NULL) {
@@ -156,6 +191,9 @@ int bst__num_nodes(bst* my_bst) {
     return 1 + num_l + num_r;
   }
 }
+
+
+
 
 
 

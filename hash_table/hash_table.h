@@ -5,13 +5,26 @@
 #include "../linked_list/linked_list.h"
 
 
-// Hash Table Data Structure (using closed address with linked lists)
+
+//=========================//
+//    Hash Table Struct    //
+//=========================//
+
+// Hash Table Data Structure
+// Using Closed Addressing  with Linked Lists to resolve collision
+
 typedef struct {
    linked_list** table;
    int size;
 } hash_table;
 
 
+
+
+
+//=========================//
+//      Hash Function      //
+//=========================//
 
 // Using 32-bit integer hash function from here: https://stackoverflow.com/a/12996028/14056167
 int hash(int x) {
@@ -22,6 +35,14 @@ int hash(int x) {
 }
 
 
+
+
+
+
+
+//=========================//
+//    Hash Table Methods   //
+//=========================//
 
 // Initializes an empty hash_table
 hash_table* ht__init(int size) {
@@ -41,22 +62,6 @@ hash_table* ht__init(int size) {
 
 
 
-// Adds a key to a hash_table
-void ht__insert(hash_table* my_ht, int key) {
-  int hashed_key = hash(key) % (my_ht->size);
-  ll__append(my_ht->table[hashed_key], key);
-}
-
-
-// Checks if a key exists in the table
-int ht__search(hash_table* my_ht, int key) {
-  int hashed_key = hash(key) % (my_ht->size);
-  return ll__search(my_ht->table[hashed_key], key);
-}
-
-
-
-
 
 
 // Prints a hash_table
@@ -72,6 +77,9 @@ void ht__print(hash_table* my_ht) {
 
 
 
+
+
+
 // Frees the hash_table
 void ht__free(hash_table* my_ht) {
   for (int i = 0; i < (my_ht->size); i++) {
@@ -83,6 +91,26 @@ void ht__free(hash_table* my_ht) {
   }
   free(my_ht->table);
   free(my_ht);
+}
+
+
+
+
+
+// Adds a key to a hash_table
+void ht__insert(hash_table* my_ht, int key) {
+  int hashed_key = hash(key) % (my_ht->size);
+  ll__append(my_ht->table[hashed_key], key);
+}
+
+
+
+
+
+// Checks if a key exists in the table
+int ht__search(hash_table* my_ht, int key) {
+  int hashed_key = hash(key) % (my_ht->size);
+  return ll__search(my_ht->table[hashed_key], key);
 }
 
 
