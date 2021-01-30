@@ -36,7 +36,7 @@ typedef struct linked_list_type {
 
 
 // Initializes an empty linked_list
- linked_list* ll__init() {
+linked_list* ll__init() {
   linked_list* new_ll = malloc(sizeof(linked_list));
   new_ll->len = 0;
   new_ll->head = NULL;
@@ -51,7 +51,7 @@ typedef struct linked_list_type {
 
 
 // Prints a linked list
- void ll__print(linked_list* my_ll) {
+void ll__print(linked_list* my_ll) {
 
   for (node* iterator = my_ll->head; iterator != NULL; iterator = iterator->next) {
     printf("%d -> ", iterator->val);
@@ -66,7 +66,7 @@ typedef struct linked_list_type {
 
 
 // Frees all the memory of a linked list
- void ll__free(linked_list* my_ll) {
+void ll__free(linked_list* my_ll) {
   node* iterator = my_ll->head;
 
   while (iterator != NULL) {
@@ -84,7 +84,7 @@ typedef struct linked_list_type {
 
 
 // Checks if the linked list is empty
- int ll__is_empty(linked_list* my_ll) {
+int ll__is_empty(linked_list* my_ll) {
   return (my_ll->head == NULL);
 }
 
@@ -95,7 +95,7 @@ typedef struct linked_list_type {
 
 
 // Appends a value v to a linked list
- void ll__append(linked_list* my_ll, int v) {
+void ll__append(linked_list* my_ll, int v) {
 
   // Initializes a new node
   node* new_node = malloc(sizeof(node));
@@ -125,7 +125,7 @@ typedef struct linked_list_type {
 
 
 // Returns 1 if a value v is in the list, 0 if not
- int ll__search(linked_list* my_ll, int v) {
+int ll__search(linked_list* my_ll, int v) {
 
   for (node* iterator = my_ll->head; iterator != NULL; iterator = iterator->next) {
     if (iterator->val == v) return 1;
@@ -138,7 +138,7 @@ typedef struct linked_list_type {
 
 
 // Removes the head of the linked list, and returns its value
- int ll__remove_head(linked_list* my_ll) {
+int ll__remove_head(linked_list* my_ll) {
 
   if (ll__is_empty(my_ll)) {
     printf("The Linked List is empty\n");
@@ -164,7 +164,7 @@ typedef struct linked_list_type {
 
 
 // Removes the first instance of a value from a linked list - returns 0 if something was removed, 1 otherwise
- int ll__remove_val(linked_list* my_ll, int val) {
+int ll__remove_val(linked_list* my_ll, int val) {
 
   // If the linked list is empty
   if (ll__is_empty(my_ll)) {
